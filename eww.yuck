@@ -9,12 +9,10 @@
 (defvar i_volume_muted     "󰖁")
 (defvar i_calendar         "󱨰")
 
-(defpoll time :interval "1s" `date +"%T"`)
-
+(defpoll time              :interval "1s"    `date +"%T"`)
 (defpoll focused_desktop   :interval "250ms" "bspc query -D -d .focused --names")
-(defpoll occupied_desktops :interval "250ms" "bspc query -D -d .occupied --names")
-
-(defpoll volume_perc :interval "5s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll occupied_desktops :interval "1s"    "bspc query -D -d .occupied --names")
+(defpoll volume_perc       :interval "5s"    "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 
 (defwindow topbar
            :monitor 0
@@ -100,11 +98,18 @@
 
 (defwidget desktop_switcher [desktop]
     (button
-        :class { focused_desktop == desktop ?  "switcher active" : "switcher" }
+        :class { focused_desktop == desktop
+                    ? "switcher active"
+                    : (arraylength(search(occupied_desktops, "${desktop}")) > 0)
+                        ? "switcher occupied"
+                        : "switcher"
+                }
         :tooltip "Switch to desktop ${desktop}"
         :onclick "bspc desktop -f ${desktop}"
         (label :text {
-            focused_desktop == desktop ?  i_desktop_focused : i_desktop_empty
+            (focused_desktop == desktop || (arraylength(search(occupied_desktops, "${desktop}")) > 0))
+                ? i_desktop_focused
+                : i_desktop_empty
         })
     )
 )

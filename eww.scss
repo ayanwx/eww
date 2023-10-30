@@ -1,53 +1,42 @@
-$bg       : #16161E;
-$bg-alt   : #1d1d2c;
-$gray     : #363B54;
-$black    : #111111;
-$white    : #FFFFFF;
-$red      : #F7768E;
-$green    : #18FFB1;
-$blue     : #42A5F5;
-$orange   : #FFD493;
-$violet   : #7353F8;
-$pink     : #F16399;
+@import "colors/tokyonight-candy.scss";
 
 // [margin/padding]: top right bottom left
-
 * { all: unset; }
 
 window {
-    background: $bg;
+    background: $color-0;
 }
 
 .left {
-    background : $bg-alt;
+    background : $color-8;
     margin-left: 0.5em;
     padding    : 0.3em 0.9em 0.3em 0.5em;
 }
 
 .btn {
-    background: $bg-alt;
+    background: $color-8;
     padding   : 0.3em 0.6em 0.3em 0.6em;
 }
 
 //left
-.start   { color: $blue; }
-.network { color: $pink; }
+.start   { color: $color-6; }
+.network { color: $color-1; }
 
 // center
 .switcher {
-    color     : $gray;
+    color     : $color-7;
     padding   : 0 0.6em 0 0.4em;
     font-size : 1em;
     transition: 350ms linear;
 }
-.switcher.active { color: $blue; }
+.switcher.active   { color: $color-6; }
 
 // right
 .right {
     padding-right: 0.5em;
 }
-.cpu     { color: $blue;   }
-.ram     { color: $green;  }
-.storage { color: $orange; }
-.volume  { color: $pink;   }
-.clock   { color: $blue;   }
+.cpu     { color: $color-6; }
+.ram     { color: $color-2; }
+.storage { color: $color-3; }
+.volume  { color: $color-1; }
+.clock   { color: $color-6; }
