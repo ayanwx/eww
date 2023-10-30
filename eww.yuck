@@ -1,0 +1,120 @@
+(defvar i_desktop_focused  "󰜋")
+(defvar i_desktop_empty    "󰜌")
+(defvar i_start_menu       "")
+(defvar i_wifi_connected   "󰤨")
+(defvar i_cpu              "󰍛")
+(defvar i_ram              "")
+(defvar i_sdcard           "󰆓")
+(defvar i_volume           "󰕾")
+(defvar i_volume_muted     "󰖁")
+(defvar i_calendar         "󱨰")
+
+(defpoll time :interval "1s" `date +"%T"`)
+
+(defpoll focused_desktop   :interval "250ms" "bspc query -D -d .focused --names")
+(defpoll occupied_desktops :interval "250ms" "bspc query -D -d .occupied --names")
+
+(defpoll volume_perc :interval "5s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+
+(defwindow topbar
+           :monitor 0
+           :geometry (geometry
+                        :x "0%"
+                        :y "0px"
+                        :width "100%"
+                        :height "3.5%"
+                        :anchor "top center")
+           :stacking "bg"
+           :windowtype "dock"
+           :reserve (struts :distance "3.45%" :side "top")
+           :wm-ignore false
+           :class "window"
+(box
+    :valign "center"
+    (left)
+    (center)
+    (right)
+))
+
+(defwidget left []
+    (box
+        :class "left"
+        :halign "start"
+        :spacing 10
+        (button 
+            :class "start"
+            :tooltip "Start"
+            :onclick "$HOME/.config/eww/scripts/power-menu.sh"
+            (label :text i_start_menu)
+        )
+        (button
+            :class "network"
+            :tooltip "Network usage"
+            (label :text i_wifi_connected)
+        )
+    )
+)
+
+(defwidget center []
+    (box
+        :halign "center"
+        :spacing 1
+        (desktop_switcher :desktop 1)
+        (desktop_switcher :desktop 2)
+        (desktop_switcher :desktop 3)
+        (desktop_switcher :desktop 4)
+        (desktop_switcher :desktop 5)
+    )
+)
+
+(defwidget right []
+    (box
+        :class "right"
+        :halign "end"
+        :space-evenly false
+        :spacing 10
+        (label
+            :class "btn cpu"
+            :tooltip "CPU usage"
+            :text "${i_cpu} ${round(EWW_CPU.avg, 2)}%"
+        )
+        (label
+            :class "btn ram"
+            :tooltip "RAM usage"
+            :text "${i_ram} ${round(EWW_RAM.used_mem / 1024/1024/1024, 2)} GB"
+        )
+        (label
+            :class "btn storage"
+            :tooltip "Storage usage"
+            :text "${i_sdcard} ${round(EWW_DISK['/'].used / 1024/1024/1024, 2)} GB"
+        )
+        (volume)
+        (button
+            :class "btn clock"
+            :tooltip "Calendar"
+            (label :text "${i_calendar} ${time}")
+        )
+        
+    )
+)
+
+(defwidget desktop_switcher [desktop]
+    (button
+        :class { focused_desktop == desktop ?  "switcher active" : "switcher" }
+        :tooltip "Switch to desktop ${desktop}"
+        :onclick "bspc desktop -f ${desktop}"
+        (label :text {
+            focused_desktop == desktop ?  i_desktop_focused : i_desktop_empty
+        })
+    )
+)
+
+(defwidget volume []
+    (button
+        :class "btn volume"
+        :tooltip "Volume"
+        (label
+            :text "${i_volume} ${volume_perc}%"
+        )
+    )
+)

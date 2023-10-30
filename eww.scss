@@ -1,0 +1,53 @@
+$bg       : #16161E;
+$bg-alt   : #1d1d2c;
+$gray     : #363B54;
+$black    : #111111;
+$white    : #FFFFFF;
+$red      : #F7768E;
+$green    : #18FFB1;
+$blue     : #42A5F5;
+$orange   : #FFD493;
+$violet   : #7353F8;
+$pink     : #F16399;
+
+// [margin/padding]: top right bottom left
+
+* { all: unset; }
+
+window {
+    background: $bg;
+}
+
+.left {
+    background : $bg-alt;
+    margin-left: 0.5em;
+    padding    : 0.3em 0.9em 0.3em 0.5em;
+}
+
+.btn {
+    background: $bg-alt;
+    padding   : 0.3em 0.6em 0.3em 0.6em;
+}
+
+//left
+.start   { color: $blue; }
+.network { color: $pink; }
+
+// center
+.switcher {
+    color     : $gray;
+    padding   : 0 0.6em 0 0.4em;
+    font-size : 1em;
+    transition: 350ms linear;
+}
+.switcher.active { color: $blue; }
+
+// right
+.right {
+    padding-right: 0.5em;
+}
+.cpu     { color: $blue;   }
+.ram     { color: $green;  }
+.storage { color: $orange; }
+.volume  { color: $pink;   }
+.clock   { color: $blue;   }
