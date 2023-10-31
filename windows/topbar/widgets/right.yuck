@@ -1,4 +1,4 @@
-(include "./widgets/topbar/_volume.yuck")
+(include "./widgets/_volume.yuck")
 
 (defwidget right []
     (box
@@ -25,8 +25,7 @@
         (button
             :class "btn clock"
             :tooltip "Calendar"
-            (label :text "${i_calendar} ${time}")
-        )
-        
+            (label :text "${i_calendar} ${formattime(time, '%H:%M:%S')}")
+        )   
     )
 )

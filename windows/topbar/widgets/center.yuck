@@ -1,4 +1,4 @@
-(include "./widgets/topbar/_desktop_switcher.yuck")
+(include "./widgets/_desktop_switcher.yuck")
 
 (defwidget center []
     (box
