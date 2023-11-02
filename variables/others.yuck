@@ -1,4 +1,4 @@
-(defpoll time              :interval "1s"    `date +"%s"`)
+(defpoll time  :initial 0  :interval "1s"    `date +"%s"`)
 (defpoll focused_desktop   :interval "250ms" "bspc query -D -d .focused --names")
 (defpoll occupied_desktops :interval "1s"    "bspc query -D -d .occupied --names")
 (defpoll volume_perc       :interval "5s"    "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
