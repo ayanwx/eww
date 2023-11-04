@@ -1,0 +1,37 @@
+@import "../../variables/colors/tokyonight-candy.scss";
+
+* {
+    all: unset;
+    font-family: "CaskaydiaCove Nerd Font";
+}
+
+window {
+    background: $color-0;
+    color: $color-9;
+    transition: 300ms linear;
+}
+
+.container {
+    padding: 1em;
+}
+
+.img {
+    margin-right: 1em;
+    border: 1px solid $color-4;
+    border-radius: 50px;
+}
+
+.userinfo {
+    font-size: large;
+}
+
+.powericon {
+    padding: 0.2em;
+    font-size: 1.5em;
+    background: $color-8;
+}
+
+.shutdown { color: $color-1; }
+.restart  { color: $color-4; }
+.sleep    { color: $color-3; }
+.logout   { color: $color-2; }

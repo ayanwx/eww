@@ -17,7 +17,7 @@
     :stacking   "bg"
     :windowtype "dock"
     :reserve (struts
-        :distance "3.45%"
+        :distance "3.5%"
         :side     "top"
     )
     :wm-ignore false

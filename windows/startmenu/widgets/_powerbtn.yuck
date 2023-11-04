@@ -1,0 +1,11 @@
+(defwidget _powerbtn [icon action _class _tooltip]
+    (eventbox
+        :onclick action
+        :cursor  "pointer"
+        (label
+            :class   "powericon ${_class}" 
+            :text    icon
+            :tooltip _tooltip
+        )
+    )
+)

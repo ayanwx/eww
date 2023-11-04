@@ -1,0 +1,77 @@
+(include "../../variables/icons.yuck")
+(include "../../variables/startmenu.yuck")
+(include "./widgets/_powerbtn.yuck")
+
+(defwindow startmenu
+    :monitor 0
+    :geometry (geometry
+        :x      "0.3%"
+        :y      "3.9%"
+        :anchor "top left"
+    )
+(box
+    :class        "container"
+    :valign       "start"
+    :space-evenly "false"
+    :spacing      10
+    :orientation  "v"
+    (userinfo)
+    (powermenu)
+))
+
+(defwidget powermenu []
+    (box
+        :spacing 10
+        (_powerbtn 
+            :_class  "shutdown" 
+            :icon    "${i_power_shutdown}"
+            :action  ""
+            :_tooltip "Shutdown"
+        )
+        (_powerbtn
+            :_class  "restart"
+            :icon    "${i_power_restart}"
+            :action  ""
+            :_tooltip "Restart"
+        )
+        (_powerbtn 
+            :_class  "sleep"
+            :icon    "${i_power_sleep}"
+            :action  ""
+            :_tooltip "Sleep"
+        )
+        (_powerbtn 
+            :_class  "logout"
+            :icon    "${i_power_logout}"
+            :action  ""
+            :_tooltip "Sign Out"
+        )
+
+    )
+)
+
+(defwidget userinfo []
+    (box
+        :space-evenly "false"
+        :spacing      15
+        (image
+            :path         pfp
+            :image-height 50
+        )
+        (box
+            :orientation "v"
+            (label
+                :class "userinfo"
+                :text  user
+            )
+            (stats)
+        )
+    )
+)
+
+(defwidget stats []
+    (box
+        :space-evenly "false"
+        (label :text  "Uptime: 3h 4m")
+    )
+)

@@ -1,0 +1,2 @@
+(defvar pfp  "../../img/avatar.png")
+(defvar user "AyanW")
