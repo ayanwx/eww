@@ -1,7 +1,10 @@
 @import "../../variables/colors/tokyonight-candy.scss";
 
 // [margin/padding]: top right bottom left
-* { all: unset; }
+* {
+    all: unset;
+    font-family: "CaskaydiaCove Nerd Font";
+}
 
 window {
     background: $color-0;

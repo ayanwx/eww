@@ -35,16 +35,16 @@
             :_tooltip "Restart"
         )
         (_powerbtn 
-            :_class  "sleep"
-            :icon    "${i_power_sleep}"
-            :action  ""
-            :_tooltip "Sleep"
-        )
-        (_powerbtn 
             :_class  "logout"
             :icon    "${i_power_logout}"
             :action  ""
             :_tooltip "Sign Out"
+        )
+        (_powerbtn 
+            :_class  "sleep"
+            :icon    "${i_power_sleep}"
+            :action  ""
+            :_tooltip "Sleep"
         )
 
     )
@@ -60,18 +60,20 @@
         )
         (box
             :orientation "v"
+            :halign "start"
             (label
                 :class "userinfo"
-                :text  user
+                :halign "start"
+                :text  greeter
             )
-            (stats)
+            (box
+                :orientation "h"
+                :space-evenly "false"
+                :spacing 13
+                :halign "start"
+                (label :class "uptimeicon" :text "${i_clock}")
+                (label :text uptime)
+            )
         )
-    )
-)
-
-(defwidget stats []
-    (box
-        :space-evenly "false"
-        (label :text  "Uptime: 3h 4m")
     )
 )

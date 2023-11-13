@@ -26,9 +26,13 @@ window {
 }
 
 .powericon {
-    padding: 0.2em;
+    padding: 0.3em 0.6em 0.3em 0.6em;
     font-size: 1.5em;
     background: $color-8;
+}
+
+.uptimeicon {
+    color: $color-4;
 }
 
 .shutdown { color: $color-1; }

@@ -8,6 +8,7 @@
 (defvar i_volume           "󰕾")
 (defvar i_volume_muted     "󰖁")
 (defvar i_calendar         "󱨰")
+(defvar i_clock            "")
 
 (defvar i_power_shutdown   "󰐥")
 (defvar i_power_restart    "")

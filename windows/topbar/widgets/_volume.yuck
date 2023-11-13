@@ -1,8 +1,9 @@
 (defwidget _volume []
-    (button
-        :class   "btn volume"
+    (eventbox
         :tooltip "Volume"
-        (label   :text "${i_volume} ${volume_perc}%"
+        (label
+            :class "btn volume"
+            :text  "${i_volume} ${volume}"
         )
     )
 )
