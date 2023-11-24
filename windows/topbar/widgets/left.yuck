@@ -1,7 +1,8 @@
 (defwidget left []
     (box
-        :class  "left"
-        :halign "start"
+        :class   "left"
+        :halign  "start"
+        :spacing 5
         (eventbox
             :class   "start"
             :tooltip "Start"
@@ -13,7 +14,7 @@
             :class   "network"
             :cursor  "pointer"
             :tooltip "Network usage"
-            (label   :text "${i_wifi_connected}")
+            (label   :text "${i_wifi_connected} ")
         )
     )
 )
