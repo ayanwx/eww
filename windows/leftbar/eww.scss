@@ -1,0 +1,29 @@
+@import "../../variables/colors/tokyonight-candy.scss";
+
+// [margin/padding]: top right bottom left
+* {
+    all: unset;
+    font-family: "FantasqueSansM Nerd Font";
+}
+
+window {
+    background: $color-8;
+    color: $color-9;
+    font-size: 1em;
+}
+
+.startbtn {
+    padding: 1em 0 1em 0;
+}
+// center
+.switcher {
+    color     : $color-7;
+    padding   : 0 0.6em 0 0.4em;
+    font-size : 0.85em;
+    transition: 350ms linear;
+}
+.switcher.active   { color: $color-6; }
+
+.clock {
+    font-size: large;
+}
