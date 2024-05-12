@@ -6,14 +6,14 @@
 }
 
 window {
-    background: $color-8;
-    color: $color-9;
+    background : $color-8;
+    color      : $color-9;
     font-family: "3270 Nerd Font";
 }
 
 .startbtn {
     padding: 0.6em;
-    margin: 0.4em;
+    margin : 0.4em;
 }
 
 .switcher {
@@ -23,19 +23,20 @@ window {
     transition: 350ms linear;
 }
 
-.storage { color: $color-3;}
-.ram {
-    color: $color-1;
-}
-.switcher.active   { color: $color-4; }
-.cpu { color: $color-2; }
+.storage         { color: $color-3; }
+.ram             { color: $color-1; }
+.switcher.active { color: $color-4; }
+.cpu             { color: $color-2; }
 
-.clock, .cpu, .ram, .storage {
-    font-size: large;
-    font-weight: 700;
+.stats {
+    font-size       : large;
+    font-weight     : 700;
     background-color: $color-0;
-    padding: 0.6em;
-    margin: 0.4em;
+    padding         : 0.6em;
+    margin          : 0.4em;
 }
 
-.clock { color: $color-6; padding: 0.8em; }
+.datetime {
+    color  :   $color-6;
+    padding: 0.8em;
+}

@@ -20,16 +20,16 @@
     (box
         :orientation "vertical"
         (box
-            :orientation "vertical"
-            :valign "start"
+            :orientation  "vertical"
+            :valign       "start"
             :space-evenly false
             :spacing 0
             (starmenu_button)
             (box
                 :orientation "vertical"
-                :valign "start"
-                :halign "center"
-                :class "switcher-group"
+                :valign      "start"
+                :halign      "center"
+                :class       "switcher-group"
                 :spacing 5
                 (desktop_switcher :desktop 1)
                 (desktop_switcher :desktop 2)
@@ -39,13 +39,22 @@
             )
         )
         (box
-            :orientation "vertical"
-            :valign "end"
+            :orientation  "vertical"
+            :valign       "end"
             :space-evenly false
-            :spacing 0
-            (storage)
-            (ram)
-            (cpu)
+            :spacing      0
+            (stats
+                :classname "storage"
+                :value     "${i_sdcard}  ${round(EWW_DISK['/'].used / 1024/1024/1024, 2)} GB"
+            )
+            (stats
+                :classname "ram"
+                :value     "${i_ram} ${round(EWW_RAM.used_mem / 1024/1024/1024, 2)} GB"
+            )
+            (stats
+                :classname "cpu"
+                :value     "${i_cpu}  ${round(EWW_CPU.avg, 2)}%"
+            )
             (datetime)
         )
     )
@@ -56,9 +65,9 @@
         :cursor  "pointer"
         (image
             :image-height 24
-            :image-width 24
-            :class "startbtn"
-            :path "../../img/nixos.svg"
+            :image-width  24
+            :class        "startbtn"
+            :path         "../../img/nixos.svg"
         )
     )
 )
@@ -67,7 +76,7 @@
     (eventbox
         :onclick "bspc desktop -f ${desktop}"
         :cursor  "pointer"
-        :halign "center"
+        :halign  "center"
         (label 
             :class {
                 (focused_desktop == desktop)
@@ -85,49 +94,31 @@
     )
 )
 
-
-(defwidget storage []
-    (box
-        :class "stats storage"
-        :orientation "vertical"
-        (eventbox
+(defwidget stats [value classname]
+    (eventbox
+        :cursor "pointer"
+        (box
+            :class  "stats ${classname}"
             :halign "center"
-            (label :angle 90 :text "${i_sdcard}  ${round(EWW_DISK['/'].used / 1024/1024/1024, 2)} GB")
-        )
-    )
-)
-
-(defwidget cpu []
-    (box
-        :class "stats cpu"
-        :orientation "vertical"
-        (eventbox
-            :halign "center"
-            (label :angle 90 :text "${i_cpu}  ${round(EWW_CPU.avg, 2)}% ")
-        )
-    )
-)
-
-
-(defwidget ram []
-    (box
-        :class "stats ram"
-        :orientation "vertical"
-        (eventbox
-            :halign "center"
-            (label :angle 90 :text "${i_ram} ${round(EWW_RAM.used_mem / 1024/1024/1024, 2)} GB")
+            (label
+                :angle 90
+                :text "${value}"
+            )
         )
     )
 )
 
 (defwidget datetime []
-    (box
-        :class "clock"
-        :orientation "vertical"
-        :valign "center"
-        :halign "center"
-        :spacing 1
-        (label :text "${formattime(time, '%H')}")
-        (label :text "${formattime(time, '%M')}")
+    (eventbox
+        :cursor "pointer"
+        (box
+            :class       "stats datetime"
+            :orientation "vertical"
+            :valign      "center"
+            :halign      "center"
+            :spacing     1
+            (label :text "${formattime(time, '%H')}")
+            (label :text "${formattime(time, '%M')}")
+        )
     )
 )
