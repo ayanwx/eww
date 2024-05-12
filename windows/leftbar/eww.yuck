@@ -22,15 +22,15 @@
         (box
             :orientation "vertical"
             :valign "start"
-            :space-evennly false
-            :spacing 1
+            :space-evenly false
+            :spacing 0
             (starmenu_button)
             (box
                 :orientation "vertical"
                 :valign "start"
                 :halign "center"
+                :class "switcher-group"
                 :spacing 5
-                (label)
                 (desktop_switcher :desktop 1)
                 (desktop_switcher :desktop 2)
                 (desktop_switcher :desktop 3)
@@ -39,7 +39,13 @@
             )
         )
         (box
+            :orientation "vertical"
             :valign "end"
+            :space-evenly false
+            :spacing 0
+            (storage)
+            (ram)
+            (cpu)
             (datetime)
         )
     )
@@ -52,7 +58,7 @@
             :image-height 24
             :image-width 24
             :class "startbtn"
-            :path "../../img/archlinux.png"
+            :path "../../img/nixos.svg"
         )
     )
 )
@@ -61,6 +67,7 @@
     (eventbox
         :onclick "bspc desktop -f ${desktop}"
         :cursor  "pointer"
+        :halign "center"
         (label 
             :class {
                 (focused_desktop == desktop)
@@ -78,14 +85,49 @@
     )
 )
 
+
+(defwidget storage []
+    (box
+        :class "stats storage"
+        :orientation "vertical"
+        (eventbox
+            :halign "center"
+            (label :angle 90 :text "${i_sdcard}  ${round(EWW_DISK['/'].used / 1024/1024/1024, 2)} GB")
+        )
+    )
+)
+
+(defwidget cpu []
+    (box
+        :class "stats cpu"
+        :orientation "vertical"
+        (eventbox
+            :halign "center"
+            (label :angle 90 :text "${i_cpu}  ${round(EWW_CPU.avg, 2)}% ")
+        )
+    )
+)
+
+
+(defwidget ram []
+    (box
+        :class "stats ram"
+        :orientation "vertical"
+        (eventbox
+            :halign "center"
+            (label :angle 90 :text "${i_ram} ${round(EWW_RAM.used_mem / 1024/1024/1024, 2)} GB")
+        )
+    )
+)
+
 (defwidget datetime []
     (box
         :class "clock"
         :orientation "vertical"
         :valign "center"
+        :halign "center"
         :spacing 1
         (label :text "${formattime(time, '%H')}")
         (label :text "${formattime(time, '%M')}")
-        (label)
     )
 )

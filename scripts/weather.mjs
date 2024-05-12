@@ -36,9 +36,3 @@ const getForecast = () => {
 }
 
 getForecast();
-
-//fetch('https://api.openweathermap.org/data/2.5/weather?lat=23.747&lon=89.63&units=metric&appid=1a7c818927225231cf3fd2a78295dee0')
-//    .then((response) => response.text())
-//    .then((body) => {
-//        console.log(body);
-//    });

@@ -3,7 +3,7 @@
 (defvar i_start_menu       "")
 (defvar i_wifi_connected   "󰤨")
 (defvar i_cpu              "󰍛")
-(defvar i_ram              "")
+(defvar i_ram              " ")
 (defvar i_sdcard           "󰆓")
 (defvar i_volume           "󰕾")
 (defvar i_volume_muted     "󰖁")
