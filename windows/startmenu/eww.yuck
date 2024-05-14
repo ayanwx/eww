@@ -1,79 +1,114 @@
-(include "../../variables/icons.yuck")
 (include "../../variables/startmenu.yuck")
-(include "./widgets/_powerbtn.yuck")
 
 (defwindow startmenu
     :monitor 0
     :geometry (geometry
-        :x      "0.3%"
-        :y      "3.9%"
+        :x      "2.9%"
+        :y      "0.7%"
+        :width  "15%"
+        :height "45%"
         :anchor "top left"
     )
-(box
-    :class        "container"
-    :valign       "start"
-    :space-evenly "false"
-    :spacing      10
-    :orientation  "v"
-    (userinfo)
-    (powermenu)
-))
-
-(defwidget powermenu []
+    :stacking   "bg"
+    :windowtype "normal"
+    :wm-ignore true
     (box
-        :spacing 10
-        (_powerbtn 
-            :_class  "shutdown" 
-            :icon    "${i_power_shutdown}"
-            :action  ""
-            :_tooltip "Shutdown"
-        )
-        (_powerbtn
-            :_class  "restart"
-            :icon    "${i_power_restart}"
-            :action  ""
-            :_tooltip "Restart"
-        )
-        (_powerbtn 
-            :_class  "logout"
-            :icon    "${i_power_logout}"
-            :action  ""
-            :_tooltip "Sign Out"
-        )
-        (_powerbtn 
-            :_class  "sleep"
-            :icon    "${i_power_sleep}"
-            :action  ""
-            :_tooltip "Sleep"
-        )
+        :space-evenly false
+        :spacing 0
+        :valign "start"
+        :halign "center"
+        :orientation "vertical"
+        (uptime)
+        (userinfo)
+        (wifi)
+        (label)
+        (weather)
+    )
+)
 
+(defwidget uptime []
+    (box
+        :class "uptime"
+        :spacing 150
+        (label :text "UPTIME")
+        (label :text uptime)
     )
 )
 
 (defwidget userinfo []
     (box
-        :space-evenly "false"
-        :spacing      15
-        (image
-            :path         pfp
-            :image-height 50
-        )
+        :class "userinfo"
         (box
-            :orientation "v"
-            :halign "start"
-            (label
-                :class "userinfo"
-                :halign "start"
-                :text  greeter
+            :orientation "vertical"
+            :space-evenly false
+            :spacing 17
+            (image
+                :class "avatar"
+                :path pfp
+                :height 100
+                :width 100
             )
             (box
-                :orientation "h"
-                :space-evenly "false"
-                :spacing 13
-                :halign "start"
-                (label :class "uptimeicon" :text "${i_clock}")
-                (label :text uptime)
+                :orientation "vertical"
+                :space-evenly false
+                (label :class "uname" :text "AyanW")
+                (label :class "host" :text "@inductionCooker")
             )
         )
     )
 )
+
+(defwidget wifi []
+    (box
+        :class "wifi"
+        :halign "center"
+        :space-evenly false
+        :spacing 100
+        (box
+            :orientation "vertical"
+            :space-evenly false
+            :spacing 0
+            (image
+                :path "../../img/wifi-connected.svg"
+                :image-height 48
+                :image-width 48
+            )
+            (label :text "enp34s0")
+        )
+        (box
+            :valign "center"
+            :space-evenly false
+            :orientation "vertical"
+            (label :text "  0.74 Mb")
+            (label :text "  4.09 Mb")
+        )
+    )
+)
+
+(defwidget weather []
+    (box
+        :class "wifi"
+        :halign "center"
+        :space-evenly false
+        :spacing 100
+        (box
+            :orientation "vertical"
+            :space-evenly false
+            :spacing -7
+            (image
+                :path "../../img/weather/10d@2x.png"
+                :image-height 48
+                :image-width 48
+            )
+            (label :text "30${celcius}")
+        )
+        (box
+            :valign "center"
+            :space-evenly false
+            :orientation "vertical"
+            (label :text "  0.74 Mb")
+            (label :text "  4.09 Mb")
+        )
+    )
+)
+

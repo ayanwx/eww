@@ -63,6 +63,7 @@
 (defwidget starmenu_button []
     (eventbox
         :cursor  "pointer"
+        :onclick "eww open --toggle startmenu --config $HOME/.config/eww/windows/startmenu"
         (image
             :image-height 24
             :image-width  24
